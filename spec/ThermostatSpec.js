@@ -22,15 +22,11 @@ describe("Thermostat", function(){
     });
 
     it('only lets the user put temperature down', function(){
-      //turn power saving mode off
-      // expect(function(){thermostat.down(11);}).toThrowError('Exceeds Minimum Temperature');
       thermostat.down(3);
       expect(thermostat.temperature()).toEqual(17)
     })
 
     it('only lets the user put temperature to the min temperature', function(){
-      //turn power saving mode off
-      // expect(function(){thermostat.down(11);}).toThrowError('Exceeds Minimum Temperature');
       thermostat.down(20);
       expect(thermostat.temperature()).toEqual(10)
     })
