@@ -30,20 +30,32 @@ Thermostat.prototype.up = function(amount) {
     }
 };
 
-Thermostat.prototype.powerSaving = function() {
-    return this.psmode;
-}
-
-Thermostat.prototype.adjustPS = function(value) {
-    this.psmode = value
-}
-
-
-
 Thermostat.prototype.down = function(amount) {
     if ((this.temperature() - amount) <= 10) {
       this.temp = 10
     } else {
       this.temp -= amount
+    }
+};
+
+Thermostat.prototype.powerSaving = function() {
+    return this.psmode;
+};
+
+Thermostat.prototype.adjustPS = function(value) {
+    this.psmode = value
+};
+
+Thermostat.prototype.reset = function() {
+    this.temp = 20
+}
+
+Thermostat.prototype.usage = function() {
+    if (this.temp < 18) {
+        return 'low-usage';
+    } else if (this.temp < 25) {
+        return 'medium-usage';
+    } else {
+        return 'high-usage';
     }
 };

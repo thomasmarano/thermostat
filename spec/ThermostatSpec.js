@@ -51,8 +51,23 @@ describe("Thermostat", function(){
     })
 
     it("only allows max temperature of 25 degrees if power saving mode is on", function(){
+    thermostat.up(20)
+    expect(thermostat.temperature()).toEqual(25)
+    })
 
+    it("lets you reset the temperature to 20 degrees", function(){
+    thermostat.up(20)
+    thermostat.reset();
+    expect(thermostat.temperature()).toEqual(20)
+    })
 
+    it("calculates current energy usage", function(){
+    expect(thermostat.usage()).toEqual('medium-usage')
+    })
+
+    it("expects high usage above 25 degrees", function(){
+    thermostat.up(20);
+    expect(thermostat.usage()).toEqual('high-usage')
     })
 });
 
@@ -61,11 +76,9 @@ describe("Thermostat", function(){
 
 
 
-// You can reset the temperature to 20 with a reset function
 // You can ask about the thermostat's current energy usage: < 18 is low-usage, < 25 is medium-usage, anything else is high-usage.
 // (In the challenges where we add an interface, low-usage will be indicated with green, medium-usage indicated with black, high-usage indicated with red.)
-
-
+// You can reset the temperature to 20 with a reset function
 // If power saving mode is on, the maximum temperature is 25 degrees
 // Power saving mode is on by default
 // If power saving mode is off, the maximum temperature is 32 degrees
