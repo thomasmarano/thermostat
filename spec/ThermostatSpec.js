@@ -1,3 +1,5 @@
+'use strict';
+
 describe("Thermostat", function(){
     var thermostat;
 
@@ -32,7 +34,7 @@ describe("Thermostat", function(){
     })
 
     it("won't raise temperature above 32 degrees", function(){
-    thermostat.adjustPS(false);
+    thermostat.turnOffPs();
     thermostat.up(20);
     expect(thermostat.temperature()).toEqual(32)
     })
@@ -41,9 +43,15 @@ describe("Thermostat", function(){
     expect(thermostat.powerSaving()).toEqual(true)
     });
 
-    it("lets you turn off power saving mode", function(){
-    thermostat.adjustPS(false)
-    expect(thermostat.powerSaving()).toEqual(false)
+    it("turns off power saving mode", function(){
+      thermostat.turnOffPs();
+      expect(thermostat.powerSaving()).toEqual(false)
+    })
+
+    it("turns on power saving mode", function(){
+      thermostat.turnOffPs();
+      thermostat.turnOnPs();
+      expect(thermostat.powerSaving()).toEqual(true);
     })
 
     it("only allows max temperature of 25 degrees if power saving mode is on", function(){
@@ -66,19 +74,3 @@ describe("Thermostat", function(){
     expect(thermostat.usage()).toEqual('high-usage')
     })
 });
-
-
-
-
-
-
-// You can ask about the thermostat's current energy usage: < 18 is low-usage, < 25 is medium-usage, anything else is high-usage.
-// (In the challenges where we add an interface, low-usage will be indicated with green, medium-usage indicated with black, high-usage indicated with red.)
-// You can reset the temperature to 20 with a reset function
-// If power saving mode is on, the maximum temperature is 25 degrees
-// Power saving mode is on by default
-// If power saving mode is off, the maximum temperature is 32 degrees
-// Thermostat starts at 20 degrees
-//  You can increase the temperature with an up function
-// You can decrease the temperature with a down function
-// The minimum temperature is 10 degrees

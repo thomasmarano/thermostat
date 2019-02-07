@@ -4,7 +4,6 @@ function Thermostat() {
       this.maxTemp = 32;
       this.psmaxTemp = 25;
       this.psmode = true
-
 };
 
 
@@ -42,8 +41,12 @@ Thermostat.prototype.powerSaving = function() {
     return this.psmode;
 };
 
-Thermostat.prototype.adjustPS = function(value) {
-    this.psmode = value
+Thermostat.prototype.turnOffPs = function() {
+    this.psmode = false
+};
+
+Thermostat.prototype.turnOnPs = function() {
+    this.psmode = true
 };
 
 Thermostat.prototype.reset = function() {
