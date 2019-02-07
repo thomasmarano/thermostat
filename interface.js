@@ -23,15 +23,18 @@ $(document).ready(function(){
     $('#power-saving-on').on('click', function(){
       thermostat.turnOnPs();
       $('#power-saving-status').text('on');
+      updateTemperature();
     })
 
     $('#power-saving-off').on('click', function(){
         thermostat.turnOffPs();
         $('#power-saving-status').text('off')
+        updateTemperature();
     })
 
 
     function updateTemperature() {
       $('#temperature').text(thermostat.temperature());
+      $('#temperature').attr('class', thermostat.usage());
     }
 });
